@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include <Windows.h>
+#include <windows.h>
 
 using namespace std;
 
