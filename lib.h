@@ -8,51 +8,51 @@
 
 using namespace std;
 
-// ================= ПРОТОТИПИ ФУНКЦІЙ =================
+// ================= РџР РћРўРћРўРРџР Р¤РЈРќРљР¦Р†Р™ =================
 
-// Функції для керування кольором тексту та очищення консолі
-void SetColor(int text, int background); // Встановлення кольору тексту та фону
-void ClearConsole();                     // Очищення консолі
+// Р¤СѓРЅРєС†С–С— РґР»СЏ РєРµСЂСѓРІР°РЅРЅСЏ РєРѕР»СЊРѕСЂРѕРј С‚РµРєСЃС‚Сѓ С‚Р° РѕС‡РёС‰РµРЅРЅСЏ РєРѕРЅСЃРѕР»С–
+void SetColor(int text, int background); // Р’СЃС‚Р°РЅРѕРІР»РµРЅРЅСЏ РєРѕР»СЊРѕСЂСѓ С‚РµРєСЃС‚Сѓ С‚Р° С„РѕРЅСѓ
+void ClearConsole();                     // РћС‡РёС‰РµРЅРЅСЏ РєРѕРЅСЃРѕР»С–
 
-// Функції роботи з меню
-void ShowMainMenu();        // Виведення головного меню
-void ShowProductMenu();     // Виведення меню керування продуктами
-void ShowEmployeeMenu();    // Виведення меню керування співробітниками
+// Р¤СѓРЅРєС†С–С— СЂРѕР±РѕС‚Рё Р· РјРµРЅСЋ
+void ShowMainMenu();        // Р’РёРІРµРґРµРЅРЅСЏ РіРѕР»РѕРІРЅРѕРіРѕ РјРµРЅСЋ
+void ShowProductMenu();     // Р’РёРІРµРґРµРЅРЅСЏ РјРµРЅСЋ РєРµСЂСѓРІР°РЅРЅСЏ РїСЂРѕРґСѓРєС‚Р°РјРё
+void ShowEmployeeMenu();    // Р’РёРІРµРґРµРЅРЅСЏ РјРµРЅСЋ РєРµСЂСѓРІР°РЅРЅСЏ СЃРїС–РІСЂРѕР±С–С‚РЅРёРєР°РјРё
 
-// Функції роботи з масивом продуктів
-void AddProduct();              // Додавання нового продукту
-void ShowProducts();            // Виведення списку продуктів
-void EditProduct();             // Редагування інформації про продукт
-void DeleteProduct();           // Видалення продукту зі списку
-void SaveProductsToFile();      // Збереження списку продуктів у файл
-void LoadProductsFromFile();    // Завантаження списку продуктів з файлу
+// Р¤СѓРЅРєС†С–С— СЂРѕР±РѕС‚Рё Р· РјР°СЃРёРІРѕРј РїСЂРѕРґСѓРєС‚С–РІ
+void AddProduct();              // Р”РѕРґР°РІР°РЅРЅСЏ РЅРѕРІРѕРіРѕ РїСЂРѕРґСѓРєС‚Сѓ
+void ShowProducts();            // Р’РёРІРµРґРµРЅРЅСЏ СЃРїРёСЃРєСѓ РїСЂРѕРґСѓРєС‚С–РІ
+void EditProduct();             // Р РµРґР°РіСѓРІР°РЅРЅСЏ С–РЅС„РѕСЂРјР°С†С–С— РїСЂРѕ РїСЂРѕРґСѓРєС‚
+void DeleteProduct();           // Р’РёРґР°Р»РµРЅРЅСЏ РїСЂРѕРґСѓРєС‚Сѓ Р·С– СЃРїРёСЃРєСѓ
+void SaveProductsToFile();      // Р—Р±РµСЂРµР¶РµРЅРЅСЏ СЃРїРёСЃРєСѓ РїСЂРѕРґСѓРєС‚С–РІ Сѓ С„Р°Р№Р»
+void LoadProductsFromFile();    // Р—Р°РІР°РЅС‚Р°Р¶РµРЅРЅСЏ СЃРїРёСЃРєСѓ РїСЂРѕРґСѓРєС‚С–РІ Р· С„Р°Р№Р»Сѓ
 
-// Функції роботи з масивом співробітників
-void AddEmployee();              // Додавання нового співробітника
-void ShowEmployees();            // Виведення списку співробітників
-void EditEmployee();             // Редагування інформації про співробітника
-void DeleteEmployee();           // Видалення співробітника зі списку
-void SaveEmployeesToFile();      // Збереження списку співробітників у файл
-void LoadEmployeesFromFile();    // Завантаження списку співробітників з файлу
+// Р¤СѓРЅРєС†С–С— СЂРѕР±РѕС‚Рё Р· РјР°СЃРёРІРѕРј СЃРїС–РІСЂРѕР±С–С‚РЅРёРєС–РІ
+void AddEmployee();              // Р”РѕРґР°РІР°РЅРЅСЏ РЅРѕРІРѕРіРѕ СЃРїС–РІСЂРѕР±С–С‚РЅРёРєР°
+void ShowEmployees();            // Р’РёРІРµРґРµРЅРЅСЏ СЃРїРёСЃРєСѓ СЃРїС–РІСЂРѕР±С–С‚РЅРёРєС–РІ
+void EditEmployee();             // Р РµРґР°РіСѓРІР°РЅРЅСЏ С–РЅС„РѕСЂРјР°С†С–С— РїСЂРѕ СЃРїС–РІСЂРѕР±С–С‚РЅРёРєР°
+void DeleteEmployee();           // Р’РёРґР°Р»РµРЅРЅСЏ СЃРїС–РІСЂРѕР±С–С‚РЅРёРєР° Р·С– СЃРїРёСЃРєСѓ
+void SaveEmployeesToFile();      // Р—Р±РµСЂРµР¶РµРЅРЅСЏ СЃРїРёСЃРєСѓ СЃРїС–РІСЂРѕР±С–С‚РЅРёРєС–РІ Сѓ С„Р°Р№Р»
+void LoadEmployeesFromFile();    // Р—Р°РІР°РЅС‚Р°Р¶РµРЅРЅСЏ СЃРїРёСЃРєСѓ СЃРїС–РІСЂРѕР±С–С‚РЅРёРєС–РІ Р· С„Р°Р№Р»Сѓ
 
-// Функції для перевірки коректності введення
-void InputString(char* str, int size);          // Безпечне зчитування рядка з клавіатури
-int InputInt();                                 // Безпечне зчитування цілого числа
-float InputFloat();                             // Безпечне зчитування дробового числа
+// Р¤СѓРЅРєС†С–С— РґР»СЏ РїРµСЂРµРІС–СЂРєРё РєРѕСЂРµРєС‚РЅРѕСЃС‚С– РІРІРµРґРµРЅРЅСЏ
+void InputString(char* str, int size);          // Р‘РµР·РїРµС‡РЅРµ Р·С‡РёС‚СѓРІР°РЅРЅСЏ СЂСЏРґРєР° Р· РєР»Р°РІС–Р°С‚СѓСЂРё
+int InputInt();                                 // Р‘РµР·РїРµС‡РЅРµ Р·С‡РёС‚СѓРІР°РЅРЅСЏ С†С–Р»РѕРіРѕ С‡РёСЃР»Р°
+float InputFloat();                             // Р‘РµР·РїРµС‡РЅРµ Р·С‡РёС‚СѓРІР°РЅРЅСЏ РґСЂРѕР±РѕРІРѕРіРѕ С‡РёСЃР»Р°
 
-// Функції для службових операцій
-void Pause();                   // Призупинення виконання програми до натискання клавіші
-void PrintLine(int length);    // Виведення горизонтальної лінії
-void WaitForKey();             // Очікування натискання клавіші
+// Р¤СѓРЅРєС†С–С— РґР»СЏ СЃР»СѓР¶Р±РѕРІРёС… РѕРїРµСЂР°С†С–Р№
+void Pause();                   // РџСЂРёР·СѓРїРёРЅРµРЅРЅСЏ РІРёРєРѕРЅР°РЅРЅСЏ РїСЂРѕРіСЂР°РјРё РґРѕ РЅР°С‚РёСЃРєР°РЅРЅСЏ РєР»Р°РІС–С€С–
+void PrintLine(int length);    // Р’РёРІРµРґРµРЅРЅСЏ РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅРѕС— Р»С–РЅС–С—
+void WaitForKey();             // РћС‡С–РєСѓРІР°РЅРЅСЏ РЅР°С‚РёСЃРєР°РЅРЅСЏ РєР»Р°РІС–С€С–
 
-// Перелік кольорів для тексту
+// РџРµСЂРµР»С–Рє РєРѕР»СЊРѕСЂС–РІ РґР»СЏ С‚РµРєСЃС‚Сѓ
 enum class Color : unsigned short {
     BLACK, DARKBLUE, DARKGREEN, TURQUOISE, DARKRED,
     PURPLE, DARKYELLOW, GREY, DARKGREY, BLUE,
     GREEN, CYAN, RED, MAGENTA, YELLOW, WHITE
 };
 
-// Функція для виводу тексту у певній позиції та кольорі
+// Р¤СѓРЅРєС†С–СЏ РґР»СЏ РІРёРІРѕРґСѓ С‚РµРєСЃС‚Сѓ Сѓ РїРµРІРЅС–Р№ РїРѕР·РёС†С–С— С‚Р° РєРѕР»СЊРѕСЂС–
 void show_text(int x, int y, Color color, const string& text) {
     HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
     COORD pos = { SHORT(x), SHORT(y) };
@@ -62,7 +62,7 @@ void show_text(int x, int y, Color color, const string& text) {
     SetConsoleTextAttribute(h, (WORD)Color::WHITE);
 }
 
-// Структура для опису продукту
+// РЎС‚СЂСѓРєС‚СѓСЂР° РґР»СЏ РѕРїРёСЃСѓ РїСЂРѕРґСѓРєС‚Сѓ
 struct Product {
     string name;
     string category;
@@ -70,7 +70,7 @@ struct Product {
     int quantity;
 };
 
-// Структура для опису співробітника
+// РЎС‚СЂСѓРєС‚СѓСЂР° РґР»СЏ РѕРїРёСЃСѓ СЃРїС–РІСЂРѕР±С–С‚РЅРёРєР°
 struct Employee {
     string name;
     string position;
@@ -79,19 +79,19 @@ struct Employee {
     string birthday;
 };
 
-// Функція затримки — очікує натискання клавіші Enter
+// Р¤СѓРЅРєС†С–СЏ Р·Р°С‚СЂРёРјРєРё вЂ” РѕС‡С–РєСѓС” РЅР°С‚РёСЃРєР°РЅРЅСЏ РєР»Р°РІС–С€С– Enter
 void pause() {
-    cout << "\nНатисніть Enter для продовження...";
+    cout << "\nРќР°С‚РёСЃРЅС–С‚СЊ Enter РґР»СЏ РїСЂРѕРґРѕРІР¶РµРЅРЅСЏ...";
     _getch();
 }
 
-// ====== ЗБЕРЕЖЕННЯ ТА ЗАВАНТАЖЕННЯ ПРОДУКТІВ ======
+// ====== Р—Р‘Р•Р Р•Р–Р•РќРќРЇ РўРђ Р—РђР’РђРќРўРђР–Р•РќРќРЇ РџР РћР”РЈРљРўР†Р’ ======
 
-// Зберігає всі продукти у файл
+// Р—Р±РµСЂС–РіР°С” РІСЃС– РїСЂРѕРґСѓРєС‚Рё Сѓ С„Р°Р№Р»
 void save_products_to_file(Product* products, int count) {
     FILE* f;
     if (fopen_s(&f, "products.txt", "w") != 0 || !f) {
-        cout << "Не вдалося відкрити products.txt для запису.\n";
+        cout << "РќРµ РІРґР°Р»РѕСЃСЏ РІС–РґРєСЂРёС‚Рё products.txt РґР»СЏ Р·Р°РїРёСЃСѓ.\n";
         return;
     }
     for (int i = 0; i < count; i++) {
@@ -104,7 +104,7 @@ void save_products_to_file(Product* products, int count) {
     fclose(f);
 }
 
-// Завантажує всі продукти з файлу
+// Р—Р°РІР°РЅС‚Р°Р¶СѓС” РІСЃС– РїСЂРѕРґСѓРєС‚Рё Р· С„Р°Р№Р»Сѓ
 void load_products_from_file(Product*& products, int& count) {
     FILE* f;
     if (fopen_s(&f, "products.txt", "r") != 0 || !f) {
@@ -136,13 +136,13 @@ void load_products_from_file(Product*& products, int& count) {
     products = temp;
 }
 
-// ====== ЗБЕРЕЖЕННЯ ТА ЗАВАНТАЖЕННЯ СПІВРОБІТНИКІВ ======
+// ====== Р—Р‘Р•Р Р•Р–Р•РќРќРЇ РўРђ Р—РђР’РђРќРўРђР–Р•РќРќРЇ РЎРџР†Р’Р РћР‘Р†РўРќРРљР†Р’ ======
 
-// Зберігає всіх співробітників у файл
+// Р—Р±РµСЂС–РіР°С” РІСЃС–С… СЃРїС–РІСЂРѕР±С–С‚РЅРёРєС–РІ Сѓ С„Р°Р№Р»
 void save_employees_to_file(Employee* emps, int count) {
     FILE* f;
     if (fopen_s(&f, "employees.txt", "w") != 0 || !f) {
-        cout << "Не вдалося відкрити employees.txt для запису.\n";
+        cout << "РќРµ РІРґР°Р»РѕСЃСЏ РІС–РґРєСЂРёС‚Рё employees.txt РґР»СЏ Р·Р°РїРёСЃСѓ.\n";
         return;
     }
     for (int i = 0; i < count; i++) {
@@ -156,7 +156,7 @@ void save_employees_to_file(Employee* emps, int count) {
     fclose(f);
 }
 
-// Завантажує всіх співробітників з файлу
+// Р—Р°РІР°РЅС‚Р°Р¶СѓС” РІСЃС–С… СЃРїС–РІСЂРѕР±С–С‚РЅРёРєС–РІ Р· С„Р°Р№Р»Сѓ
 void load_employees_from_file(Employee*& emps, int& count) {
     FILE* f;
     if (fopen_s(&f, "employees.txt", "r") != 0 || !f) {
@@ -189,35 +189,35 @@ void load_employees_from_file(Employee*& emps, int& count) {
     emps = temp;
 }
 
-// ====== ОПЕРАЦІЇ З ПРОДУКТАМИ ======
+// ====== РћРџР•Р РђР¦Р†Р‡ Р— РџР РћР”РЈРљРўРђРњР ======
 
-// Додає новий продукт
+// Р”РѕРґР°С” РЅРѕРІРёР№ РїСЂРѕРґСѓРєС‚
 void add_product(Product*& products, int& count) {
     Product p;
-    cout << "Введіть назву продукту: ";      getline(cin, p.name);
-    cout << "Введіть категорію продукту: "; getline(cin, p.category);
-    cout << "Введіть ціну продукту: ";      cin >> p.price;
-    cout << "Введіть кількість продуктів: "; cin >> p.quantity; cin.ignore();
+    cout << "Р’РІРµРґС–С‚СЊ РЅР°Р·РІСѓ РїСЂРѕРґСѓРєС‚Сѓ: ";      getline(cin, p.name);
+    cout << "Р’РІРµРґС–С‚СЊ РєР°С‚РµРіРѕСЂС–СЋ РїСЂРѕРґСѓРєС‚Сѓ: "; getline(cin, p.category);
+    cout << "Р’РІРµРґС–С‚СЊ С†С–РЅСѓ РїСЂРѕРґСѓРєС‚Сѓ: ";      cin >> p.price;
+    cout << "Р’РІРµРґС–С‚СЊ РєС–Р»СЊРєС–СЃС‚СЊ РїСЂРѕРґСѓРєС‚С–РІ: "; cin >> p.quantity; cin.ignore();
     Product* nt = new Product[count + 1];
     for (int i = 0; i < count; i++) nt[i] = products[i];
     nt[count++] = p;
     delete[] products;
     products = nt;
-    cout << "Продукт додано.\n";
+    cout << "РџСЂРѕРґСѓРєС‚ РґРѕРґР°РЅРѕ.\n";
 }
 
-// Виводить список усіх продуктів
+// Р’РёРІРѕРґРёС‚СЊ СЃРїРёСЃРѕРє СѓСЃС–С… РїСЂРѕРґСѓРєС‚С–РІ
 void view_products(Product* products, int count) {
     if (!products || count == 0) {
-        cout << "Немає продуктів у базі.\n";  return;
+        cout << "РќРµРјР°С” РїСЂРѕРґСѓРєС‚С–РІ Сѓ Р±Р°Р·С–.\n";  return;
     }
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (WORD)Color::YELLOW);
-    cout << "\nСПИСОК ПРОДУКТІВ:\n";
+    cout << "\nРЎРџРРЎРћРљ РџР РћР”РЈРљРўР†Р’:\n";
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (WORD)Color::CYAN);
-    cout << left << setw(25) << "Назва"
-        << setw(25) << "Категорія"
-        << setw(12) << "Ціна"
-        << setw(12) << "Кількість" << "\n";
+    cout << left << setw(25) << "РќР°Р·РІР°"
+        << setw(25) << "РљР°С‚РµРіРѕСЂС–СЏ"
+        << setw(12) << "Р¦С–РЅР°"
+        << setw(12) << "РљС–Р»СЊРєС–СЃС‚СЊ" << "\n";
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (WORD)Color::WHITE);
     for (int i = 0; i < count; i++) {
         cout << left << setw(25) << products[i].name
@@ -227,46 +227,46 @@ void view_products(Product* products, int count) {
     }
 }
 
-// Пошук продукту за назвою
+// РџРѕС€СѓРє РїСЂРѕРґСѓРєС‚Сѓ Р·Р° РЅР°Р·РІРѕСЋ
 void find_product(Product* products, int count) {
     string key;
-    cout << "Введіть назву продукту для пошуку: "; getline(cin, key);
+    cout << "Р’РІРµРґС–С‚СЊ РЅР°Р·РІСѓ РїСЂРѕРґСѓРєС‚Сѓ РґР»СЏ РїРѕС€СѓРєСѓ: "; getline(cin, key);
     for (int i = 0; i < count; i++) {
         if (products[i].name == key) {
-            cout << "Знайдено:\n"
-                << "Категорія: " << products[i].category << "\n"
-                << "Ціна: " << products[i].price << "\n"
-                << "Кількість: " << products[i].quantity << "\n";
+            cout << "Р—РЅР°Р№РґРµРЅРѕ:\n"
+                << "РљР°С‚РµРіРѕСЂС–СЏ: " << products[i].category << "\n"
+                << "Р¦С–РЅР°: " << products[i].price << "\n"
+                << "РљС–Р»СЊРєС–СЃС‚СЊ: " << products[i].quantity << "\n";
             return;
         }
     }
-    cout << "Продукт не знайдено.\n";
+    cout << "РџСЂРѕРґСѓРєС‚ РЅРµ Р·РЅР°Р№РґРµРЅРѕ.\n";
 }
 
-// Оновлення ціни або кількості продукту
+// РћРЅРѕРІР»РµРЅРЅСЏ С†С–РЅРё Р°Р±Рѕ РєС–Р»СЊРєРѕСЃС‚С– РїСЂРѕРґСѓРєС‚Сѓ
 void update_product(Product* products, int count) {
     string key;
-    cout << "Введіть назву продукту для оновлення: "; getline(cin, key);
+    cout << "Р’РІРµРґС–С‚СЊ РЅР°Р·РІСѓ РїСЂРѕРґСѓРєС‚Сѓ РґР»СЏ РѕРЅРѕРІР»РµРЅРЅСЏ: "; getline(cin, key);
     for (int i = 0; i < count; i++) {
         if (products[i].name == key) {
-            cout << "1. Змінити ціну\n2. Змінити кількість\nВаш вибір: ";
+            cout << "1. Р—РјС–РЅРёС‚Рё С†С–РЅСѓ\n2. Р—РјС–РЅРёС‚Рё РєС–Р»СЊРєС–СЃС‚СЊ\nР’Р°С€ РІРёР±С–СЂ: ";
             int choice; cin >> choice;
-            if (choice == 1) { cout << "Нова ціна: ";      cin >> products[i].price; }
-            else { cout << "Нова кількість: "; cin >> products[i].quantity; }
+            if (choice == 1) { cout << "РќРѕРІР° С†С–РЅР°: ";      cin >> products[i].price; }
+            else { cout << "РќРѕРІР° РєС–Р»СЊРєС–СЃС‚СЊ: "; cin >> products[i].quantity; }
             cin.ignore();
             return;
         }
     }
-    cout << "Продукт не знайдено.\n";
+    cout << "РџСЂРѕРґСѓРєС‚ РЅРµ Р·РЅР°Р№РґРµРЅРѕ.\n";
 }
 
-// Видаляє продукт з бази
+// Р’РёРґР°Р»СЏС” РїСЂРѕРґСѓРєС‚ Р· Р±Р°Р·Рё
 void delete_product(Product*& products, int& count) {
     string key;
-    cout << "Введіть назву продукту для видалення: "; getline(cin, key);
+    cout << "Р’РІРµРґС–С‚СЊ РЅР°Р·РІСѓ РїСЂРѕРґСѓРєС‚Сѓ РґР»СЏ РІРёРґР°Р»РµРЅРЅСЏ: "; getline(cin, key);
     int idx = -1;
     for (int i = 0; i < count; i++) if (products[i].name == key) { idx = i; break; }
-    if (idx < 0) { cout << "Продукт не знайдено.\n"; return; }
+    if (idx < 0) { cout << "РџСЂРѕРґСѓРєС‚ РЅРµ Р·РЅР°Р№РґРµРЅРѕ.\n"; return; }
     Product* nt = new Product[count - 1];
     for (int i = 0, j = 0; i < count; i++) if (i != idx) nt[j++] = products[i];
     delete[] products;
@@ -274,16 +274,16 @@ void delete_product(Product*& products, int& count) {
     count--;
 }
 
-// ====== ОПЕРАЦІЇ ЗІ СПІВРОБІТНИКАМИ ======
+// ====== РћРџР•Р РђР¦Р†Р‡ Р—Р† РЎРџР†Р’Р РћР‘Р†РўРќРРљРђРњР ======
 
-// Додає нового співробітника
+// Р”РѕРґР°С” РЅРѕРІРѕРіРѕ СЃРїС–РІСЂРѕР±С–С‚РЅРёРєР°
 void add_employee(Employee*& emps, int& count) {
     Employee e;
-    cout << "Введіть ПІБ: "; getline(cin, e.name);
-    cout << "Введіть посаду: "; getline(cin, e.position);
-    cout << "Введіть зарплату: "; cin >> e.salary; cin.ignore();
-    cout << "Введіть номер телефону: "; getline(cin, e.phone);
-    cout << "Введіть Дату народження: "; getline(cin, e.birthday);
+    cout << "Р’РІРµРґС–С‚СЊ РџР†Р‘: "; getline(cin, e.name);
+    cout << "Р’РІРµРґС–С‚СЊ РїРѕСЃР°РґСѓ: "; getline(cin, e.position);
+    cout << "Р’РІРµРґС–С‚СЊ Р·Р°СЂРїР»Р°С‚Сѓ: "; cin >> e.salary; cin.ignore();
+    cout << "Р’РІРµРґС–С‚СЊ РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅСѓ: "; getline(cin, e.phone);
+    cout << "Р’РІРµРґС–С‚СЊ Р”Р°С‚Сѓ РЅР°СЂРѕРґР¶РµРЅРЅСЏ: "; getline(cin, e.birthday);
     Employee* nt = new Employee[count + 1];
     for (int i = 0; i < count; i++) nt[i] = emps[i];
     nt[count++] = e;
@@ -291,20 +291,20 @@ void add_employee(Employee*& emps, int& count) {
     emps = nt;
 }
 
-// Виводить список усіх співробітників
+// Р’РёРІРѕРґРёС‚СЊ СЃРїРёСЃРѕРє СѓСЃС–С… СЃРїС–РІСЂРѕР±С–С‚РЅРёРєС–РІ
 void view_employees(Employee* emps, int count) {
     if (!emps || count == 0) {
-        cout << "Немає співробітників у базі.\n"; return;
+        cout << "РќРµРјР°С” СЃРїС–РІСЂРѕР±С–С‚РЅРёРєС–РІ Сѓ Р±Р°Р·С–.\n"; return;
     }
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (WORD)Color::YELLOW);
-    cout << "\nСПИСОК СПІВРОБІТНИКІВ:\n";
+    cout << "\nРЎРџРРЎРћРљ РЎРџР†Р’Р РћР‘Р†РўРќРРљР†Р’:\n";
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (WORD)Color::CYAN);
     cout << left
-        << setw(25) << "ПІБ"
-        << setw(20) << "Посада"
-        << setw(12) << "Зарплата"
-        << setw(18) << "Телефон"
-        << setw(15) << "Дата народження"
+        << setw(25) << "РџР†Р‘"
+        << setw(20) << "РџРѕСЃР°РґР°"
+        << setw(12) << "Р—Р°СЂРїР»Р°С‚Р°"
+        << setw(18) << "РўРµР»РµС„РѕРЅ"
+        << setw(15) << "Р”Р°С‚Р° РЅР°СЂРѕРґР¶РµРЅРЅСЏ"
         << "\n";
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (WORD)Color::WHITE);
     for (int i = 0; i < count; i++) {
@@ -318,34 +318,34 @@ void view_employees(Employee* emps, int count) {
     }
 }
 
-// Оновлює дані співробітника
+// РћРЅРѕРІР»СЋС” РґР°РЅС– СЃРїС–РІСЂРѕР±С–С‚РЅРёРєР°
 void update_employee(Employee* emps, int count) {
     string key;
-    cout << "Введіть ПІБ співробітника для оновлення: "; getline(cin, key);
+    cout << "Р’РІРµРґС–С‚СЊ РџР†Р‘ СЃРїС–РІСЂРѕР±С–С‚РЅРёРєР° РґР»СЏ РѕРЅРѕРІР»РµРЅРЅСЏ: "; getline(cin, key);
     for (int i = 0; i < count; i++) {
         if (emps[i].name == key) {
-            cout << "1. Змінити посаду\n2. Змінити зарплату\n3. Змінити телефон\n4. Змінити Дату народження\nВаш вибір: ";
+            cout << "1. Р—РјС–РЅРёС‚Рё РїРѕСЃР°РґСѓ\n2. Р—РјС–РЅРёС‚Рё Р·Р°СЂРїР»Р°С‚Сѓ\n3. Р—РјС–РЅРёС‚Рё С‚РµР»РµС„РѕРЅ\n4. Р—РјС–РЅРёС‚Рё Р”Р°С‚Сѓ РЅР°СЂРѕРґР¶РµРЅРЅСЏ\nР’Р°С€ РІРёР±С–СЂ: ";
             int c; cin >> c; cin.ignore();
             switch (c) {
-            case 1: cout << "Нова посада: "; getline(cin, emps[i].position); break;
-            case 2: cout << "Нова зарплата: "; cin >> emps[i].salary; cin.ignore(); break;
-            case 3: cout << "Новий телефон: "; getline(cin, emps[i].phone); break;
-            case 4: cout << "Нова Дата народження: "; getline(cin, emps[i].birthday); break;
-            default: cout << "Невірний вибір.\n"; return;
+            case 1: cout << "РќРѕРІР° РїРѕСЃР°РґР°: "; getline(cin, emps[i].position); break;
+            case 2: cout << "РќРѕРІР° Р·Р°СЂРїР»Р°С‚Р°: "; cin >> emps[i].salary; cin.ignore(); break;
+            case 3: cout << "РќРѕРІРёР№ С‚РµР»РµС„РѕРЅ: "; getline(cin, emps[i].phone); break;
+            case 4: cout << "РќРѕРІР° Р”Р°С‚Р° РЅР°СЂРѕРґР¶РµРЅРЅСЏ: "; getline(cin, emps[i].birthday); break;
+            default: cout << "РќРµРІС–СЂРЅРёР№ РІРёР±С–СЂ.\n"; return;
             }
             return;
         }
     }
-    cout << "Співробітника не знайдено.\n";
+    cout << "РЎРїС–РІСЂРѕР±С–С‚РЅРёРєР° РЅРµ Р·РЅР°Р№РґРµРЅРѕ.\n";
 }
 
-// Видаляє співробітника з бази
+// Р’РёРґР°Р»СЏС” СЃРїС–РІСЂРѕР±С–С‚РЅРёРєР° Р· Р±Р°Р·Рё
 void delete_employee(Employee*& emps, int& count) {
     string key;
-    cout << "Введіть ПІБ співробітника для видалення: "; getline(cin, key);
+    cout << "Р’РІРµРґС–С‚СЊ РџР†Р‘ СЃРїС–РІСЂРѕР±С–С‚РЅРёРєР° РґР»СЏ РІРёРґР°Р»РµРЅРЅСЏ: "; getline(cin, key);
     int idx = -1;
     for (int i = 0; i < count; i++) if (emps[i].name == key) { idx = i; break; }
-    if (idx < 0) { cout << "Співробітника не знайдено.\n"; return; }
+    if (idx < 0) { cout << "РЎРїС–РІСЂРѕР±С–С‚РЅРёРєР° РЅРµ Р·РЅР°Р№РґРµРЅРѕ.\n"; return; }
     Employee* nt = new Employee[count - 1];
     for (int i = 0, j = 0; i < count; i++) if (i != idx) nt[j++] = emps[i];
     delete[] emps;
@@ -353,22 +353,23 @@ void delete_employee(Employee*& emps, int& count) {
     count--;
 }
 
-// ===== Меню та main =====
+// ===== РњРµРЅСЋ С‚Р° main =====
 
 void show_menu() {
-    show_text(0, 3, Color::YELLOW, "====== МЕНЮ ======");
-    show_text(0, 4, Color::GREEN, "1. Переглянути продукти");
-    show_text(0, 5, Color::GREEN, "2. Додати продукт");
-    show_text(0, 6, Color::GREEN, "3. Знайти продукт");
-    show_text(0, 7, Color::GREEN, "4. Оновити продукт");
-    show_text(0, 8, Color::GREEN, "5. Видалити продукт");
-    show_text(0, 9, Color::GREEN, "6. Зберегти продукти у файл");
-    show_text(0, 10, Color::CYAN, "7. Переглянути співробітників");
-    show_text(0, 11, Color::CYAN, "8. Додати співробітника");
-    show_text(0, 12, Color::CYAN, "9. Оновити співробітника");
-    show_text(0, 13, Color::CYAN, "10. Видалити співробітника");
-    show_text(0, 14, Color::CYAN, "11. Зберегти співробітників у файл");
-    show_text(0, 15, Color::RED, "12. Вийти");
-    show_text(0, 16, Color::YELLOW, "Ваш вибір: ");
+    show_text(0, 3, Color::YELLOW, "====== РњР•РќР® ======");
+    show_text(0, 4, Color::GREEN, "1. РџРµСЂРµРіР»СЏРЅСѓС‚Рё РїСЂРѕРґСѓРєС‚Рё");
+    show_text(0, 5, Color::GREEN, "2. Р”РѕРґР°С‚Рё РїСЂРѕРґСѓРєС‚");
+    show_text(0, 6, Color::GREEN, "3. Р—РЅР°Р№С‚Рё РїСЂРѕРґСѓРєС‚");
+    show_text(0, 7, Color::GREEN, "4. РћРЅРѕРІРёС‚Рё РїСЂРѕРґСѓРєС‚");
+    show_text(0, 8, Color::GREEN, "5. Р’РёРґР°Р»РёС‚Рё РїСЂРѕРґСѓРєС‚");
+    show_text(0, 9, Color::GREEN, "6. Р—Р±РµСЂРµРіС‚Рё РїСЂРѕРґСѓРєС‚Рё Сѓ С„Р°Р№Р»");
+    show_text(0, 10, Color::CYAN, "7. РџРµСЂРµРіР»СЏРЅСѓС‚Рё СЃРїС–РІСЂРѕР±С–С‚РЅРёРєС–РІ");
+    show_text(0, 11, Color::CYAN, "8. Р”РѕРґР°С‚Рё СЃРїС–РІСЂРѕР±С–С‚РЅРёРєР°");
+    show_text(0, 12, Color::CYAN, "9. РћРЅРѕРІРёС‚Рё СЃРїС–РІСЂРѕР±С–С‚РЅРёРєР°");
+    show_text(0, 13, Color::CYAN, "10. Р’РёРґР°Р»РёС‚Рё СЃРїС–РІСЂРѕР±С–С‚РЅРёРєР°");
+    show_text(0, 14, Color::CYAN, "11. Р—Р±РµСЂРµРіС‚Рё СЃРїС–РІСЂРѕР±С–С‚РЅРёРєС–РІ Сѓ С„Р°Р№Р»");
+    show_text(0, 15, Color::RED, "12. Р’РёР№С‚Рё");
+    show_text(0, 16, Color::YELLOW, "Р’Р°С€ РІРёР±С–СЂ: ");
 }
+
 
