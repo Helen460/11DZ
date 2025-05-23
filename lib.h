@@ -94,13 +94,14 @@ void save_products_to_file(Product* products, int count) {
         cout << "Не вдалося відкрити products.txt для запису.\n";
         return;
     }
+
     for (int i = 0; i < count; i++) {
-        fprintf(f, "%s\n%s\n%.2f\n%d\n",
-            products[i].name.c_str(),
-            products[i].category.c_str(),
-            products[i].price,
-            products[i].quantity);
+        fputs(products[i].name.c_str(), f); fputc('\n', f);
+        fputs(products[i].category.c_str(), f); fputc('\n', f);
+        fprintf(f, "%.2f\n", products[i].price);
+        fprintf(f, "%d\n", products[i].quantity);
     }
+
     fclose(f);
 }
 
@@ -112,30 +113,36 @@ void load_products_from_file(Product*& products, int& count) {
         count = 0;
         return;
     }
-    count = 0;
+
     Product* temp = nullptr;
-    char name[128], category[128];
+    char line[128], name[128], category[128];
     double price;
     int quantity;
-    while (fscanf_s(f, " %127[^\n] \n", name, (unsigned)sizeof(name)) == 1 &&
-        fscanf_s(f, " %127[^\n] \n", category, (unsigned)sizeof(category)) == 1 &&
-        fscanf_s(f, " %lf\n", &price) == 1 &&
-        fscanf_s(f, " %d\n", &quantity) == 1) {
+    count = 0;
+
+    while (fgets(name, 128, f) && fgets(category, 128, f) &&
+        fgets(line, 128, f) && fgets(line + 64, 128, f)) {
+        name[strcspn(name, "\n")] = '\0';
+        category[strcspn(category, "\n")] = '\0';
+        price = atof(line);
+        quantity = atoi(line + 64);
+
         Product p;
         p.name = name;
         p.category = category;
         p.price = price;
         p.quantity = quantity;
+
         Product* nt = new Product[count + 1];
         for (int i = 0; i < count; i++) nt[i] = temp[i];
         nt[count++] = p;
         delete[] temp;
         temp = nt;
     }
+
     fclose(f);
     products = temp;
 }
-
 // ====== ЗБЕРЕЖЕННЯ ТА ЗАВАНТАЖЕННЯ СПІВРОБІТНИКІВ ======
 
 // Зберігає всіх співробітників у файл
@@ -145,14 +152,15 @@ void save_employees_to_file(Employee* emps, int count) {
         cout << "Не вдалося відкрити employees.txt для запису.\n";
         return;
     }
+
     for (int i = 0; i < count; i++) {
-        fprintf(f, "%s\n%s\n%.2f\n%s\n%s\n",
-            emps[i].name.c_str(),
-            emps[i].position.c_str(),
-            emps[i].salary,
-            emps[i].phone.c_str(),
-            emps[i].birthday.c_str());
+        fputs(emps[i].name.c_str(), f); fputc('\n', f);
+        fputs(emps[i].position.c_str(), f); fputc('\n', f);
+        fprintf(f, "%.2f\n", emps[i].salary);
+        fputs(emps[i].phone.c_str(), f); fputc('\n', f);
+        fputs(emps[i].birthday.c_str(), f); fputc('\n', f);
     }
+
     fclose(f);
 }
 
@@ -164,27 +172,37 @@ void load_employees_from_file(Employee*& emps, int& count) {
         count = 0;
         return;
     }
-    count = 0;
+
     Employee* temp = nullptr;
-    char name[128], position[128], phone[128], birthday[128];
+    char name[128], position[128], phone[128], birthday[128], line[128];
     double salary;
-    while (fscanf_s(f, " %127[^\n] \n", name, (unsigned)sizeof(name)) == 1 &&
-        fscanf_s(f, " %127[^\n] \n", position, (unsigned)sizeof(position)) == 1 &&
-        fscanf_s(f, " %lf\n", &salary) == 1 &&
-        fscanf_s(f, " %127[^\n] \n", phone, (unsigned)sizeof(phone)) == 1 &&
-        fscanf_s(f, " %127[^\n] \n", birthday, (unsigned)sizeof(birthday)) == 1) {
+    count = 0;
+
+    while (fgets(name, 128, f) &&
+        fgets(position, 128, f) &&
+        fgets(line, 128, f) &&
+        fgets(phone, 128, f) &&
+        fgets(birthday, 128, f)) {
+        name[strcspn(name, "\n")] = '\0';
+        position[strcspn(position, "\n")] = '\0';
+        phone[strcspn(phone, "\n")] = '\0';
+        birthday[strcspn(birthday, "\n")] = '\0';
+        salary = atof(line);
+
         Employee e;
         e.name = name;
         e.position = position;
         e.salary = salary;
         e.phone = phone;
         e.birthday = birthday;
+
         Employee* nt = new Employee[count + 1];
         for (int i = 0; i < count; i++) nt[i] = temp[i];
         nt[count++] = e;
         delete[] temp;
         temp = nt;
     }
+
     fclose(f);
     emps = temp;
 }
@@ -371,5 +389,3 @@ void show_menu() {
     show_text(0, 15, Color::RED, "12. Вийти");
     show_text(0, 16, Color::YELLOW, "Ваш вибір: ");
 }
-
-
